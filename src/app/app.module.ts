@@ -3,7 +3,17 @@ import {
   MatTreeModule,
   MatCheckboxModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSliderModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatToolbarModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatButtonToggleModule
 } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -14,10 +24,19 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BookComponent } from "./book/book.component";
 import { HeaderComponent } from "./header/header.component";
-import { RecipeFiltersComponent } from './recipe-filters/recipe-filters.component';
+import { RecipeFiltersComponent } from "./recipe-filters/recipe-filters.component";
+import { RecipeComponent } from "./recipe/recipe.component";
+import { ComplexityRatingComponent } from "./complexity-rating/complexity-rating.component";
 
 @NgModule({
-  declarations: [AppComponent, BookComponent, HeaderComponent, RecipeFiltersComponent],
+  declarations: [
+    AppComponent,
+    BookComponent,
+    HeaderComponent,
+    RecipeFiltersComponent,
+    RecipeComponent,
+    ComplexityRatingComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,7 +45,17 @@ import { RecipeFiltersComponent } from './recipe-filters/recipe-filters.componen
     MatTreeModule,
     MatCheckboxModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSliderModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

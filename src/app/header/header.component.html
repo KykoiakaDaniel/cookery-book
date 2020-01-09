@@ -1,1 +1,28 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+  <span>Моя кулинарная книга</span>
+
+  <span class="fill-remaining-space"></span>
+
+  <mat-menu #authorizedMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Иванов И.</span>
+    </button>
+    <button mat-button (click)="isLogged = !isLogged">Выход</button>
+  </mat-menu>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-button (click)="isLogged = !isLogged">Войти</button>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="authorizedMenu" *ngIf="isLogged">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!isLogged">
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>

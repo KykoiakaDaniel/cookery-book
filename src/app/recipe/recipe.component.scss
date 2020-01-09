@@ -1,0 +1,44 @@
+$height-recipe: 200px;
+
+:host {
+  font-size: 20px;
+}
+.recipe-image {
+  width: 300px;
+  height: $height-recipe;
+  margin-bottom: 30px;
+}
+.recipe-description {
+  width: 500px;
+  margin-left: 20px;
+  height: $height-recipe;
+  position: relative;
+}
+.flex-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.title-recipe {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+.recipe-ingredients {
+  padding: 5px;
+}
+.ingredient-info {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.author-info {
+  position: absolute;
+  bottom: 0;
+}
+.complexity-info {
+  margin: 10px;
+}
+.buttons-control {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

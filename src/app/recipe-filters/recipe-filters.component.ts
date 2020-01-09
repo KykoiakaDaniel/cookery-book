@@ -20,10 +20,10 @@ export class RecipeNode {
 const TREE_DATA = [
   new RecipeNode("Напитки", [new RecipeNode("Квас"), new RecipeNode("Вода")]),
   new RecipeNode("Горячие блюда", [
-    new RecipeNode(`Супы`, [
-      new RecipeNode(`Борщ`),
-      new RecipeNode(`Уха`),
-      new RecipeNode(`Том-ям`)
+    new RecipeNode("Супы", [
+      new RecipeNode("Борщ"),
+      new RecipeNode("Уха"),
+      new RecipeNode("Том-ям")
     ]),
     new RecipeNode("Лазанья"),
     new RecipeNode("Форель"),
@@ -51,6 +51,8 @@ export class RecipeFiltersComponent implements OnInit {
   treeControl: FlatTreeControl<RecipeNode>;
   treeFlattener: MatTreeFlattener<RecipeNode, RecipeNode>;
   dataSource: MatTreeFlatDataSource<RecipeNode, RecipeNode>;
+
+  checklistSelection = new SelectionModel<RecipeNode>(true);
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.treeFlattener = new MatTreeFlattener(
@@ -94,8 +96,6 @@ export class RecipeFiltersComponent implements OnInit {
   hasChildren = (index: number, node: RecipeNode) => {
     return this.isExpandable(node);
   };
-
-  checklistSelection = new SelectionModel<RecipeNode>(true);
 
   descendantsAllSelected(node: RecipeNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
@@ -173,14 +173,5 @@ export class RecipeFiltersComponent implements OnInit {
       }
     }
     return null;
-  }
-
-  viv() {
-    for (let i = 0; i < this.checklistSelection.selected.length; i++) {
-      if (this.checklistSelection.selected[i].children.length === 0) {
-        console.log(this.checklistSelection.selected[i].item);
-      }
-    }
-    console.log(this.checklistSelection.selected.length);
   }
 }

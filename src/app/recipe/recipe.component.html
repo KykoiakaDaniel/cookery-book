@@ -1,0 +1,30 @@
+<div class="flex-container">
+  <img [src]="recipe.image" class="recipe-image" />
+  <div class="recipe-description">
+    <div class="title-recipe">{{ recipe.title }}</div>
+    <div>{{ listCategories }}</div>
+    <div class="flex-container complexity-info">
+      <app-complexity-rating [complexity]="recipe.complexity"></app-complexity-rating>
+      <span> | {{ recipe.price }} | {{ recipe.cookingTime }}</span>
+    </div>
+    <div class="flex-container">
+      <div *ngFor="let ingredient of recipe.ingredients; let i = index">
+        <div *ngIf="i < 4" class="ingredient-info recipe-ingredients">
+          {{ ingredient }}
+        </div>
+      </div>
+      <div *ngIf="recipe.ingredients.length > 4" class="recipe-ingredients">
+        и ещё {{ recipe.ingredients.length - 4 }} ...
+      </div>
+    </div>
+    <div class="author-info">{{ recipe.author }} | {{ recipe.date }}</div>
+    <div class="buttons-control">
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
