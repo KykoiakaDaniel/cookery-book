@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  AfterViewChecked
+} from "@angular/core";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { RecipeDataService } from "../services/recipe-data.service";
 import { RecipeFiltersComponent } from "../recipe-filters/recipe-filters.component";
@@ -8,7 +14,7 @@ import { RecipeFiltersComponent } from "../recipe-filters/recipe-filters.compone
   templateUrl: "./book.component.html",
   styleUrls: ["./book.component.scss"]
 })
-export class BookComponent implements OnInit, AfterViewInit {
+export class BookComponent implements OnInit, AfterViewInit, AfterViewChecked {
   @ViewChild(RecipeFiltersComponent, { static: false })
   private filterTree: RecipeFiltersComponent;
   markedCategories = null;
@@ -25,6 +31,7 @@ export class BookComponent implements OnInit, AfterViewInit {
     "перец"
   ];
   listRecipes;
+  listFilteredRecipes;
 
   constructor(private recipeDataService: RecipeDataService) {}
 
@@ -42,6 +49,13 @@ export class BookComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.markedCategories = this.filterTree.checklistSelection;
+  }
+  ngAfterViewChecked() {
+    setTimeout(() => {
+      this.listFilteredRecipes = this.listRecipes.filter(recipe =>
+        this.checkRecipe(recipe)
+      );
+    }, 0);
   }
 
   addIngredientSelection(): void {

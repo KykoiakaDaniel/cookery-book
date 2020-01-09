@@ -13,13 +13,19 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  height: calc(100% - 141px);
 }
 .recipes {
   margin-left: 20px;
+  overflow-y: scroll;
 }
 
 .toggle {
   clear: both;
   float: right;
   margin-bottom: 10px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
 }

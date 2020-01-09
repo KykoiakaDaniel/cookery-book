@@ -80,8 +80,19 @@
     </form>
   </div>
   <div class="recipes">
-    <ng-template ngFor let-recipe [ngForOf]="listRecipes">
-      <app-recipe *ngIf="checkRecipe(recipe)" [recipe]="recipe"></app-recipe>
-    </ng-template>
+    <app-recipe
+      *ngFor="
+        let recipe of listFilteredRecipes
+          | paginate: { itemsPerPage: 5, currentPage: p }
+      "
+      [recipe]="recipe"
+    ></app-recipe>
   </div>
+</div>
+<div class="pagination">
+  <pagination-controls
+    previousLabel=""
+    nextLabel=""
+    (pageChange)="p = $event"
+  ></pagination-controls>
 </div>
