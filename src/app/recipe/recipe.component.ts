@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Recipe } from "../classes/recipe";
 
 @Component({
   selector: "app-recipe",
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./recipe.component.scss"]
 })
 export class RecipeComponent implements OnInit {
-  @Input() recipe;
+  @Input() recipe: Recipe;
 
   listCategories: string;
 

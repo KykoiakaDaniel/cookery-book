@@ -8,6 +8,7 @@ import {
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { RecipeDataService } from "../services/recipe-data.service";
 import { RecipeFiltersComponent } from "../recipe-filters/recipe-filters.component";
+import { Recipe } from '../classes/recipe';
 
 @Component({
   selector: "app-book",
@@ -22,16 +23,9 @@ export class BookComponent implements OnInit, AfterViewInit, AfterViewChecked {
   blockTree: boolean = false;
   blockIngredients: boolean = false;
   recipesForm: FormGroup;
-  listIngredients: string[] = [
-    "томат",
-    "огурец",
-    "спагетти",
-    "говядина",
-    "лук",
-    "перец"
-  ];
-  listRecipes;
-  listFilteredRecipes;
+  listIngredients: string[];
+  listRecipes: Recipe[];
+  listFilteredRecipes: Recipe[];
 
   constructor(private recipeDataService: RecipeDataService) {}
 
@@ -44,6 +38,7 @@ export class BookComponent implements OnInit, AfterViewInit, AfterViewChecked {
       modeSelect: new FormControl("И")
     });
 
+    this.listIngredients = this.recipeDataService.getListIngredients();
     this.listRecipes = this.recipeDataService.getDataRecipes();
   }
 

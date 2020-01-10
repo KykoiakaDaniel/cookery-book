@@ -5,39 +5,8 @@ import {
   MatTreeFlatDataSource
 } from "@angular/material/tree";
 import { SelectionModel } from "@angular/cdk/collections";
-
-export class RecipeNode {
-  children: RecipeNode[];
-  constructor(public item: string, children?: RecipeNode[]) {
-    if (children === undefined) {
-      this.children = [];
-    } else {
-      this.children = children;
-    }
-  }
-}
-
-const TREE_DATA = [
-  new RecipeNode("Напитки", [new RecipeNode("Квас"), new RecipeNode("Вода")]),
-  new RecipeNode("Горячие блюда", [
-    new RecipeNode("Супы", [
-      new RecipeNode("Борщ"),
-      new RecipeNode("Уха"),
-      new RecipeNode("Том-ям")
-    ]),
-    new RecipeNode("Лазанья"),
-    new RecipeNode("Форель"),
-    new RecipeNode("Макароны с сыром")
-  ]),
-  new RecipeNode("Хлеб", [new RecipeNode("Бородинский")]),
-  new RecipeNode("Выпечка", [new RecipeNode("Пирог с вишней")]),
-  new RecipeNode("Закуски", [
-    new RecipeNode("Холодные закуски", [
-      new RecipeNode("Бутер с рыбой"),
-      new RecipeNode("Бутер с колбасой")
-    ])
-  ])
-];
+import { RecipeNode } from "../classes/recipe-node";
+import { RecipeDataService } from "../services/recipe-data.service";
 
 @Component({
   selector: "app-recipe-filters",
@@ -54,7 +23,10 @@ export class RecipeFiltersComponent implements OnInit {
 
   checklistSelection = new SelectionModel<RecipeNode>(true);
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private recipeDataService: RecipeDataService
+  ) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -73,7 +45,7 @@ export class RecipeFiltersComponent implements OnInit {
       this.treeControl,
       this.treeFlattener
     );
-    this.dataSource.data = TREE_DATA;
+    this.dataSource.data = this.recipeDataService.getDataCategories();
   }
 
   getLevel = (node: RecipeNode): number => {

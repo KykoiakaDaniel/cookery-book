@@ -1,14 +1,59 @@
+import { RecipeNode } from "./../classes/recipe-node";
 import { Injectable } from "@angular/core";
+import { Recipe } from "../classes/recipe";
 
 @Injectable({
   providedIn: "root"
 })
 export class RecipeDataService {
-  private dataRecipes;
+  private dataRecipes: Recipe[];
+  private dataCategories: RecipeNode[];
+  private listIngredients: string[];
 
   constructor() {}
 
-  getDataRecipes() {
+  getListIngredients(): string[] {
+    this.listIngredients = [
+      "томат",
+      "огурец",
+      "спагетти",
+      "говядина",
+      "лук",
+      "перец",
+      "яблоко"
+    ];
+    return this.listIngredients;
+  }
+
+  getDataCategories(): RecipeNode[] {
+    this.dataCategories = [
+      new RecipeNode("Напитки", [
+        new RecipeNode("Квас"),
+        new RecipeNode("Вода")
+      ]),
+      new RecipeNode("Горячие блюда", [
+        new RecipeNode("Супы", [
+          new RecipeNode("Борщ"),
+          new RecipeNode("Уха"),
+          new RecipeNode("Том-ям")
+        ]),
+        new RecipeNode("Лазанья"),
+        new RecipeNode("Форель"),
+        new RecipeNode("Макароны с сыром")
+      ]),
+      new RecipeNode("Хлеб", [new RecipeNode("Бородинский")]),
+      new RecipeNode("Выпечка", [new RecipeNode("Пирог с вишней")]),
+      new RecipeNode("Закуски", [
+        new RecipeNode("Холодные закуски", [
+          new RecipeNode("Бутер с рыбой"),
+          new RecipeNode("Бутер с колбасой")
+        ])
+      ])
+    ];
+    return this.dataCategories;
+  }
+
+  getDataRecipes(): Recipe[] {
     this.dataRecipes = [
       {
         image:
