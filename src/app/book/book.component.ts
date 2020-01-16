@@ -1,140 +1,87 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  AfterViewInit,
-  AfterViewChecked
-} from "@angular/core";
-import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
+import { Component, OnInit, ViewChild, AfterViewChecked } from "@angular/core";
 import { RecipeDataService } from "../services/recipe-data.service";
-import { RecipeFiltersComponent } from "../recipe-filters/recipe-filters.component";
-import { Recipe } from '../classes/recipe';
+import { Recipe } from "../classes/recipe";
+import { FiltersComponent } from "../filters/filters.component";
+import { Filter } from "../classes/filter";
 
 @Component({
   selector: "app-book",
   templateUrl: "./book.component.html",
   styleUrls: ["./book.component.scss"]
 })
-export class BookComponent implements OnInit, AfterViewInit, AfterViewChecked {
-  @ViewChild(RecipeFiltersComponent, { static: false })
-  private filterTree: RecipeFiltersComponent;
-  markedCategories = null;
-
-  blockTree: boolean = false;
-  blockIngredients: boolean = false;
-  recipesForm: FormGroup;
-  listIngredients: string[];
+export class BookComponent implements OnInit, AfterViewChecked {
+  @ViewChild(FiltersComponent, { static: false })
+  private filtersComponent: FiltersComponent;
+  filters: Filter = null;
   listRecipes: Recipe[];
   listFilteredRecipes: Recipe[];
 
   constructor(private recipeDataService: RecipeDataService) {}
 
   ngOnInit() {
-    this.recipesForm = new FormGroup({
-      title: new FormControl(""),
-      author: new FormControl(""),
-      complexity: new FormControl(100),
-      ingredients: new FormArray([new FormControl("")]),
-      modeSelect: new FormControl("И")
-    });
-
-    this.listIngredients = this.recipeDataService.getListIngredients();
     this.listRecipes = this.recipeDataService.getDataRecipes();
   }
 
-  ngAfterViewInit() {
-    this.markedCategories = this.filterTree.checklistSelection;
-  }
   ngAfterViewChecked() {
     setTimeout(() => {
+      this.filters = this.filtersComponent.recipeFilters;
       this.listFilteredRecipes = this.listRecipes.filter(recipe =>
         this.checkRecipe(recipe)
       );
     }, 0);
   }
 
-  addIngredientSelection(): void {
-    const lastIngredientIndex = <FormArray>(
-      this.recipesForm.controls["ingredients"]
-    );
-    if (
-      lastIngredientIndex.controls[lastIngredientIndex.length - 1].value !== ""
-    ) {
-      lastIngredientIndex.push(new FormControl(""));
-    }
-  }
-
-  checkRecipe(recipe): boolean {
+  checkRecipe(recipe: Recipe): boolean {
     return this.checkCategory(recipe);
   }
 
-  checkCategory(recipe): boolean {
-    if (this.markedCategories !== null) {
-      for (let i = 0; i < this.markedCategories.selected.length; i++) {
-        if (
-          recipe.categories.includes(this.markedCategories.selected[i].item)
-        ) {
-          return this.checkComplexity(recipe);
-        }
-        if (i === this.markedCategories.selected.length - 1) {
-          return false;
-        }
+  checkCategory(recipe: Recipe): boolean {
+    for (let i = 0; i < this.filters.categories.length; i++) {
+      if (recipe.categories.includes(this.filters.categories[i])) {
+        return this.checkComplexity(recipe);
+      }
+      if (i === this.filters.categories.length - 1) {
+        return false;
       }
     }
     return this.checkComplexity(recipe);
   }
 
-  checkComplexity(recipe): boolean {
-    if (recipe.complexity <= this.recipesForm.controls["complexity"].value) {
+  checkComplexity(recipe: Recipe): boolean {
+    if (recipe.complexity <= this.filters.complexity) {
       return this.checkTitle(recipe);
     }
     return false;
   }
 
-  checkTitle(recipe): boolean {
-    if (
-      recipe.title
-        .toLowerCase()
-        .includes(this.recipesForm.controls["title"].value.toLowerCase())
-    ) {
+  checkTitle(recipe: Recipe): boolean {
+    if (recipe.title.toLowerCase().includes(this.filters.title.toLowerCase())) {
       return this.checkAuthor(recipe);
     }
     return false;
   }
 
-  checkAuthor(recipe): boolean {
+  checkAuthor(recipe: Recipe): boolean {
     if (
-      recipe.author
-        .toLowerCase()
-        .includes(this.recipesForm.controls["author"].value.toLowerCase())
+      recipe.author.toLowerCase().includes(this.filters.author.toLowerCase())
     ) {
       return this.checkIngredients(recipe);
     }
     return false;
   }
 
-  checkIngredients(recipe): boolean {
-    const selectedIngredients = <FormArray>(
-      this.recipesForm.controls["ingredients"]
-    );
-    const modeAnd: boolean =
-      this.recipesForm.controls["modeSelect"].value === "И";
+  checkIngredients(recipe: Recipe): boolean {
+    const modeAnd: boolean = this.filters.modeIngredients === "И";
     let allEmpty: boolean = true;
-    for (let i = 0; i < selectedIngredients.length; i++) {
-      if (selectedIngredients.controls[i].value !== "") {
-        allEmpty = false;
-        if (modeAnd) {
-          if (
-            !recipe.ingredients.includes(selectedIngredients.controls[i].value)
-          ) {
-            return false;
-          }
-        } else {
-          if (
-            recipe.ingredients.includes(selectedIngredients.controls[i].value)
-          ) {
-            return true;
-          }
+    for (let i = 0; i < this.filters.ingredients.length; i++) {
+      allEmpty = false;
+      if (modeAnd) {
+        if (!recipe.ingredients.includes(this.filters.ingredients[i])) {
+          return false;
+        }
+      } else {
+        if (recipe.ingredients.includes(this.filters.ingredients[i])) {
+          return true;
         }
       }
     }

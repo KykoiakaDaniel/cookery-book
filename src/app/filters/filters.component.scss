@@ -1,0 +1,29 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.toggle {
+  clear: both;
+  float: right;
+  margin-bottom: 10px;
+}
+.select-width {
+  width: calc(100% - 41px);
+}
+
+::ng-deep .mat-form-field-infix {
+  padding-bottom: 9px !important;
+  padding-top: 13px !important;
+  border-top: 9px !important;
+}
+::ng-deep .mat-select-arrow-wrapper {
+  padding-top: 8px;
+}
+::ng-deep .mat-button-toggle-label-content {
+  line-height: 36px !important;
+}

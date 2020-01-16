@@ -25,18 +25,24 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BookComponent } from "./book/book.component";
 import { HeaderComponent } from "./header/header.component";
-import { RecipeFiltersComponent } from "./recipe-filters/recipe-filters.component";
 import { RecipeComponent } from "./recipe/recipe.component";
 import { ComplexityRatingComponent } from "./complexity-rating/complexity-rating.component";
+import { FilterCategoriesComponent } from './filter-categories/filter-categories.component';
+import { FiltersComponent } from './filters/filters.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AuthorizationComponent } from './authorization/authorization.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
     HeaderComponent,
-    RecipeFiltersComponent,
     RecipeComponent,
-    ComplexityRatingComponent
+    ComplexityRatingComponent,
+    FilterCategoriesComponent,
+    FiltersComponent,
+    RegistrationComponent,
+    AuthorizationComponent
   ],
   imports: [
     BrowserModule,

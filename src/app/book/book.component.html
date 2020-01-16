@@ -1,83 +1,8 @@
 <div class="flex-container">
   <div class="ingredient-filters">
-    <div>
-      <label>Категории</label>
-      <button mat-icon-button (click)="blockTree = !blockTree">
-        <mat-icon>
-          {{ blockTree ? "expand_less" : "expand_more" }}
-        </mat-icon>
-      </button>
-      <app-recipe-filters [hidden]="!blockTree"></app-recipe-filters>
+    <div class="padding-form">
+      <app-filters></app-filters>
     </div>
-    <form [formGroup]="recipesForm" class="example-form">
-      <div>
-        <label>Название</label>
-        <mat-form-field class="example-full-width" appearance="outline">
-          <input matInput formControlName="title" />
-        </mat-form-field>
-      </div>
-      <div>
-        <label>Сложность</label>
-        <div>
-          <mat-slider
-            thumbLabel
-            min="1"
-            max="100"
-            class="example-full-width"
-            formControlName="complexity"
-          ></mat-slider>
-        </div>
-      </div>
-      <div>
-        <label>Автор</label>
-        <mat-form-field class="example-full-width" appearance="outline">
-          <input matInput formControlName="author" />
-        </mat-form-field>
-      </div>
-      <div>
-        <label>Ингредиенты</label>
-        <button mat-icon-button (click)="blockIngredients = !blockIngredients">
-          <mat-icon>
-            {{ blockIngredients ? "expand_less" : "expand_more" }}
-          </mat-icon>
-        </button>
-        <div [hidden]="!blockIngredients">
-          <div formArrayName="ingredients">
-            <div
-              *ngFor="
-                let element of recipesForm.controls['ingredients'].controls;
-                let i = index
-              "
-            >
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-select [formControlName]="i">
-                  <mat-option value="">---</mat-option>
-                  <mat-option
-                    *ngFor="let ingredient of listIngredients"
-                    [value]="ingredient"
-                  >
-                    {{ ingredient }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-          <div>
-            <button mat-button (click)="addIngredientSelection()">Ещё</button>
-            <mat-button-toggle-group
-              class="toggle"
-              formControlName="modeSelect"
-            >
-              <mat-button-toggle value="И">И</mat-button-toggle>
-              <mat-button-toggle value="Или">Или</mat-button-toggle>
-            </mat-button-toggle-group>
-          </div>
-          <mat-slide-toggle class="toggle" labelPosition="before"
-            >Альтернативы</mat-slide-toggle
-          >
-        </div>
-      </div>
-    </form>
   </div>
   <div class="recipes">
     <app-recipe
@@ -87,6 +12,11 @@
       "
       [recipe]="recipe"
     ></app-recipe>
+    <div class="add-recipe">
+      <button mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
 <div class="pagination">

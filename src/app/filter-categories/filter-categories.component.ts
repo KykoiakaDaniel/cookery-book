@@ -9,11 +9,11 @@ import { RecipeNode } from "../classes/recipe-node";
 import { RecipeDataService } from "../services/recipe-data.service";
 
 @Component({
-  selector: "app-recipe-filters",
-  templateUrl: "./recipe-filters.component.html",
-  styleUrls: ["./recipe-filters.component.scss"]
+  selector: "app-filter-categories",
+  templateUrl: "./filter-categories.component.html",
+  styleUrls: ["./filter-categories.component.scss"]
 })
-export class RecipeFiltersComponent implements OnInit {
+export class FilterCategoriesComponent implements OnInit {
   ngOnInit() {}
 
   levels = new Map<RecipeNode, number>();
@@ -21,7 +21,9 @@ export class RecipeFiltersComponent implements OnInit {
   treeFlattener: MatTreeFlattener<RecipeNode, RecipeNode>;
   dataSource: MatTreeFlatDataSource<RecipeNode, RecipeNode>;
 
-  checklistSelection = new SelectionModel<RecipeNode>(true);
+  checklistSelection: SelectionModel<RecipeNode> = new SelectionModel<
+    RecipeNode
+  >(true);
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,

@@ -1,12 +1,3 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
-}
 .flex-container {
   margin-top: 20px;
   width: 100%;
@@ -17,15 +8,19 @@
 }
 .recipes {
   margin-left: 20px;
-  overflow-y: scroll;
-}
-
-.toggle {
-  clear: both;
-  float: right;
-  margin-bottom: 10px;
+  overflow-y: auto;
 }
 .pagination {
   display: flex;
   justify-content: center;
+}
+.add-recipe {
+  padding-left: 398px;
+  padding-right: 398px;
+}
+.ingredient-filters {
+  overflow-y: auto;
+}
+.padding-form {
+  padding-right: 20px;
 }
