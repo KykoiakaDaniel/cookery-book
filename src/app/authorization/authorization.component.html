@@ -1,1 +1,46 @@
-<p>authorization works!</p>
+<div>
+  <mat-toolbar color="primary" class="flex-container">
+    <span>Авторизация</span>
+  </mat-toolbar>
+
+  <form [formGroup]="authorizationForm" class="form-padding">
+    <div class="elements-form-width">
+      <label class="label-padding">Email</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <label class="label-padding">Пароль</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <div class="error" *ngIf="error">
+        Неверный Email/пароль
+      </div>
+    </div>
+
+    <div class="elements-form-width but-form">
+      <button mat-button class="but-size" (click)="openRegistrationDialog()">
+        Зарегистрироваться
+      </button>
+      <button
+        mat-stroked-button
+        class="but-size"
+        (click)="loginToAccount()"
+        [disabled]="authorizationForm.invalid"
+      >
+        Войти
+      </button>
+    </div>
+    <div class="social-media">
+      <div *ngFor="let icon of listSocialMedia" class="icon-media">
+        <a [href]="icon.link">
+          <img [src]="icon.image" width="30" height="30"
+        /></a>
+      </div>
+    </div>
+  </form>
+</div>

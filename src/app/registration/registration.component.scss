@@ -1,0 +1,43 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px;
+}
+.flex-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.form-padding {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+.elements-form-width {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+.width-input {
+  width: 75%;
+}
+.error {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  color: red;
+}
+.label-padding {
+  padding-top: 10px;
+  margin-right: 15px;
+}
+.but-form {
+  padding-right: 50px;
+  padding-left: 50px;
+  width: calc(100% - 100px);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.but-size {
+  font-size: 16px;
+}

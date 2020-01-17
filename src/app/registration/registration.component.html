@@ -1,1 +1,56 @@
-<p>registration works!</p>
+<div>
+  <mat-toolbar color="primary" class="flex-container">
+    <span>Регистрация</span>
+  </mat-toolbar>
+
+  <form [formGroup]="registrationForm" class="form-padding">
+    <div class="elements-form-width">
+      <label class="label-padding">Имя</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <label class="label-padding">Фамилия</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput formControlName="surname" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <label class="label-padding">Отчество</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput formControlName="patronymic" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <label class="label-padding">Email</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <label class="label-padding">Пароль</label>
+      <mat-form-field class="width-input" appearance="outline">
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+    </div>
+    <div class="elements-form-width">
+      <div class="error" *ngIf="error">
+        Данный Email уже зарегистрирован
+      </div>
+    </div>
+  </form>
+  <div class="but-form">
+    <button mat-stroked-button class="but-size" (click)="onCancelClick()">
+      Отмена
+    </button>
+    <button
+      mat-stroked-button
+      class="but-size"
+      (click)="registerAccount()"
+      [disabled]="registrationForm.invalid"
+    >
+      Зарегистрироваться
+    </button>
+  </div>
+</div>

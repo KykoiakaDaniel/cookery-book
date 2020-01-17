@@ -8,7 +8,9 @@
       <mat-icon>dialpad</mat-icon>
       <span>Иванов И.</span>
     </button>
-    <button mat-button (click)="isLogged = !isLogged">Выход</button>
+    <button mat-button (click)="logOut()">
+      Выход
+    </button>
   </mat-menu>
 
   <mat-menu #menu="matMenu">
@@ -16,13 +18,23 @@
       <mat-icon>dialpad</mat-icon>
       <span>Redial</span>
     </button>
-    <button mat-button (click)="isLogged = !isLogged">Войти</button>
+    <button mat-button (click)="openAuthorizationDialog()">
+      Войти
+    </button>
   </mat-menu>
 
-  <button mat-icon-button [matMenuTriggerFor]="authorizedMenu" *ngIf="isLogged">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="authorizedMenu"
+    *ngIf="authorizationDataService.getAuthorizationStatus()"
+  >
     <mat-icon>exit_to_app</mat-icon>
   </button>
-  <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!isLogged">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    *ngIf="!authorizationDataService.getAuthorizationStatus()"
+  >
     <mat-icon>person</mat-icon>
   </button>
 </mat-toolbar>

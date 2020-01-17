@@ -13,7 +13,8 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatSlideToggleModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatDialogModule
 } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -27,10 +28,10 @@ import { BookComponent } from "./book/book.component";
 import { HeaderComponent } from "./header/header.component";
 import { RecipeComponent } from "./recipe/recipe.component";
 import { ComplexityRatingComponent } from "./complexity-rating/complexity-rating.component";
-import { FilterCategoriesComponent } from './filter-categories/filter-categories.component';
-import { FiltersComponent } from './filters/filters.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { AuthorizationComponent } from './authorization/authorization.component';
+import { FilterCategoriesComponent } from "./filter-categories/filter-categories.component";
+import { FiltersComponent } from "./filters/filters.component";
+import { RegistrationComponent } from "./registration/registration.component";
+import { AuthorizationComponent } from "./authorization/authorization.component";
 
 @NgModule({
   declarations: [
@@ -63,8 +64,10 @@ import { AuthorizationComponent } from './authorization/authorization.component'
     MatMenuModule,
     MatSidenavModule,
     MatSlideToggleModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule
   ],
+  entryComponents: [AuthorizationComponent, RegistrationComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
