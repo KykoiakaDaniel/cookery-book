@@ -10,6 +10,7 @@ export class RecipeComponent implements OnInit {
   @Input() recipe: Recipe;
 
   listCategories: string;
+  openRecipe: boolean = false;
 
   constructor() {}
 

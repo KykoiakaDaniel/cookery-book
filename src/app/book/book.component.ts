@@ -76,11 +76,19 @@ export class BookComponent implements OnInit, AfterViewChecked {
     for (let i = 0; i < this.filters.ingredients.length; i++) {
       allEmpty = false;
       if (modeAnd) {
-        if (!recipe.ingredients.includes(this.filters.ingredients[i])) {
+        if (
+          !recipe.ingredients.find(
+            item => item.ingredient === this.filters.ingredients[i]
+          )
+        ) {
           return false;
         }
       } else {
-        if (recipe.ingredients.includes(this.filters.ingredients[i])) {
+        if (
+          recipe.ingredients.find(
+            item => item.ingredient === this.filters.ingredients[i]
+          )
+        ) {
           return true;
         }
       }

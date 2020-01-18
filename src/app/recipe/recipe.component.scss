@@ -1,22 +1,39 @@
 $height-recipe: 200px;
-
+$height-ingredient: 27px;
 :host {
   font-size: 20px;
 }
 .recipe-image {
   width: 300px;
   height: $height-recipe;
-  margin-bottom: 30px;
 }
 .recipe-description {
   width: 500px;
   margin-left: 20px;
-  height: $height-recipe;
   position: relative;
 }
 .flex-container {
   display: flex;
   flex-flow: row nowrap;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.ingredient-description {
+  height: $height-ingredient;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+.but-info {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  margin-bottom: 3px;
+}
+.icon-but {
+  margin-bottom: 3px;
 }
 .title-recipe {
   font-weight: bolder;
@@ -32,8 +49,9 @@ $height-recipe: 200px;
   margin-right: 10px;
 }
 .author-info {
-  position: absolute;
-  bottom: 0;
+  width: 100%;
+  text-align: right;
+  margin-top: 20px;
 }
 .complexity-info {
   margin: 10px;
@@ -42,4 +60,52 @@ $height-recipe: 200px;
   position: absolute;
   right: 0;
   top: 0;
+}
+.opening-element {
+  display: flex;
+  justify-content: center;
+}
+.popover-wrapper {
+  padding-left: 2px;
+  position: relative;
+  height: $height-ingredient;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+.popover-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 33px;
+  border-radius: 10px;
+  transform: translateY(calc(-50% + 13px));
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+.popover-wrapper:hover .popover-content {
+  padding: 5px 10px;
+  min-height: $height-ingredient;
+  z-index: 10;
+  opacity: 1;
+  visibility: visible;
+  background-color: #fafafa;
+}
+.popover-content:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 9px solid;
+  border-color: transparent #a0a0a0 transparent transparent;
+  top: 50%;
+  right: 100%;
+  margin-top: -9px;
+}
+.popover-element-count {
+  white-space: nowrap;
+}
+.popover-element-ingredient {
+  padding-right: 20px;
 }

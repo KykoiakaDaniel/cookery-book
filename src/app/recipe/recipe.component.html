@@ -4,20 +4,63 @@
     <div class="title-recipe">{{ recipe.title }}</div>
     <div>{{ listCategories }}</div>
     <div class="flex-container complexity-info">
-      <app-complexity-rating [complexity]="recipe.complexity"></app-complexity-rating>
+      <app-complexity-rating
+        [complexity]="recipe.complexity"
+      ></app-complexity-rating>
       <span> | {{ recipe.price }} | {{ recipe.cookingTime }}</span>
     </div>
-    <div class="flex-container">
-      <div *ngFor="let ingredient of recipe.ingredients; let i = index">
+    <div class="flex-container" *ngIf="!openRecipe">
+      <div *ngFor="let ingred of recipe.ingredients; let i = index">
         <div *ngIf="i < 4" class="ingredient-info recipe-ingredients">
-          {{ ingredient }}
+          {{ ingred.ingredient }}
         </div>
       </div>
       <div *ngIf="recipe.ingredients.length > 4" class="recipe-ingredients">
         и ещё {{ recipe.ingredients.length - 4 }} ...
       </div>
     </div>
-    <div class="author-info">{{ recipe.author }} | {{ recipe.date }}</div>
+    <div class="grid-container" *ngIf="openRecipe">
+      <div>
+        <div
+          *ngFor="let ingred of recipe.ingredients; let i = index"
+          class="ingredient-description"
+        >
+          <div>
+            {{ ingred.ingredient }}
+          </div>
+          <div class="popover-wrapper" *ngIf="ingred.alternatives.length !== 0">
+            <div>
+              <button mat-icon-button class="but-info">
+                <mat-icon class="icon-but" color="primary">info</mat-icon>
+              </button>
+            </div>
+            <div class="popover-content">
+              <div class="popover-element-ingredient">
+                <div *ngFor="let alternative of ingred.alternatives">
+                  {{ alternative.ingredient }}
+                </div>
+              </div>
+              <div class="popover-element-count">
+                <div *ngFor="let alternative of ingred.alternatives">
+                  {{ alternative.count }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          *ngFor="let ingred of recipe.ingredients; let i = index"
+          class="ingredient-description"
+        >
+          {{ ingred.count }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="openRecipe" class="author-info">
+      {{ recipe.author }} | {{ recipe.date }}
+    </div>
     <div class="buttons-control">
       <button mat-icon-button>
         <mat-icon>edit</mat-icon>
@@ -27,4 +70,16 @@
       </button>
     </div>
   </div>
+</div>
+<div class="opening-element">
+  <button
+    mat-icon-button
+    *ngIf="!openRecipe"
+    (click)="openRecipe = !openRecipe"
+  >
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="openRecipe" (click)="openRecipe = !openRecipe">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </button>
 </div>

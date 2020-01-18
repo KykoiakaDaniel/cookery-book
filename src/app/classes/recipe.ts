@@ -6,7 +6,11 @@ export class Recipe {
     public complexity: number,
     public price: number,
     public cookingTime: string,
-    public ingredients: string[],
+    public ingredients: {
+      ingredient: string;
+      count: string;
+      alternatives: { ingredient: string; count: string }[];
+    }[],
     public author: string,
     public date: string
   ) {}
