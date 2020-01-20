@@ -1,5 +1,6 @@
 export class Recipe {
   constructor(
+    public id: number,
     public image: string,
     public title: string,
     public categories: string[],
@@ -10,6 +11,10 @@ export class Recipe {
       ingredient: string;
       count: string;
       alternatives: { ingredient: string; count: string }[];
+    }[],
+    public cookingSteps: {
+      image: string;
+      description: string;
     }[],
     public author: string,
     public date: string

@@ -1,16 +1,35 @@
-$height-recipe: 200px;
+$height-recipe: 267px;
 $height-ingredient: 27px;
 :host {
   font-size: 20px;
 }
+.main-info {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.recipe-info-image {
+  width: 400px;
+  text-align: justify;
+  line-height: 15px;
+}
+.recipe-link-image:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
 .recipe-image {
-  width: 300px;
+  width: 400px;
   height: $height-recipe;
 }
 .recipe-description {
-  width: 500px;
+  width: 700px;
   margin-left: 20px;
   position: relative;
+}
+.flex-container-main {
+  justify-content: center;
+  margin-top: 20px;
 }
 .flex-container {
   display: flex;
@@ -19,12 +38,19 @@ $height-ingredient: 27px;
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
 }
 .ingredient-description {
   height: $height-ingredient;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .but-info {
   width: 24px;
@@ -34,6 +60,12 @@ $height-ingredient: 27px;
 }
 .icon-but {
   margin-bottom: 3px;
+}
+.ingredient-popover {
+  height: $height-ingredient;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 .title-recipe {
   font-weight: bolder;
@@ -49,11 +81,6 @@ $height-ingredient: 27px;
   border-radius: 10px;
   margin-right: 10px;
 }
-.author-info {
-  width: 100%;
-  text-align: right;
-  margin-top: 20px;
-}
 .complexity-info {
   margin: 10px;
 }
@@ -62,10 +89,7 @@ $height-ingredient: 27px;
   right: 0;
   top: 0;
 }
-.opening-element {
-  display: flex;
-  justify-content: center;
-}
+
 .popover-wrapper {
   padding-left: 2px;
   position: relative;
@@ -109,4 +133,19 @@ $height-ingredient: 27px;
 }
 .popover-element-ingredient {
   padding-right: 20px;
+}
+
+.step-info {
+  width: 1110px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  line-height: 40px;
+  padding-left: 10px;
+}
+.steps {
+  width: 1120px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 20px;
 }

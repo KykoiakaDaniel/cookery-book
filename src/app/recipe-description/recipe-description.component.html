@@ -1,0 +1,84 @@
+<div class="main-info">
+  <div class="flex-container flex-container-main">
+    <div class="recipe-info-image">
+      <img [src]="recipe.image" class="recipe-image" />
+      <a routerLink="" class="recipe-link-image"
+        >Найти с такими же ингредиентами</a
+      >
+      <!-- <div class="link-full-width"></div> -->
+    </div>
+    <div class="recipe-description">
+      <div class="title-recipe">{{ recipe.title }}</div>
+      <div>{{ listCategories }}</div>
+      <div class="flex-container complexity-info">
+        <app-complexity-rating
+          [complexity]="recipe.complexity"
+        ></app-complexity-rating>
+        <span> | {{ recipe.price }} | {{ recipe.cookingTime }}</span>
+      </div>
+      <div>{{ recipe.author }} | {{ recipe.date }}</div>
+
+      <div class="text-center">ИНГРЕДИЕНТЫ</div>
+      <div class="grid-container">
+        <div
+          *ngFor="let ingred of recipe.ingredients; let i = index"
+          class="ingredient-description"
+        >
+          <div class="ingredient-popover">
+            <div>
+              {{ ingred.ingredient }}
+            </div>
+
+            <div
+              class="popover-wrapper"
+              *ngIf="ingred.alternatives.length !== 0"
+            >
+              <div>
+                <button mat-icon-button class="but-info">
+                  <mat-icon class="icon-but" color="primary">info</mat-icon>
+                </button>
+              </div>
+              <div class="popover-content">
+                <div class="popover-element-ingredient">
+                  <div *ngFor="let alternative of ingred.alternatives">
+                    {{ alternative.ingredient }}
+                  </div>
+                </div>
+                <div class="popover-element-count">
+                  <div *ngFor="let alternative of ingred.alternatives">
+                    {{ alternative.count }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            {{ ingred.count }}
+          </div>
+        </div>
+      </div>
+      <div class="buttons-control">
+        <button mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="step-info">
+    <span>Шаги приготовления</span>
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <app-cooking-step
+    *ngFor="let step of recipe.cookingSteps; let i = index"
+    [stepNumber]="i"
+    [image]="step.image"
+    [description]="step.description"
+    class="steps"
+  ></app-cooking-step>
+</div>

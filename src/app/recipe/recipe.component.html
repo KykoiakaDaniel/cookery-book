@@ -1,7 +1,7 @@
 <div class="flex-container">
   <img [src]="recipe.image" class="recipe-image" />
   <div class="recipe-description">
-    <div class="title-recipe">{{ recipe.title }}</div>
+    <a class="title-recipe" [routerLink]="link">{{ recipe.title }}</a>
     <div>{{ listCategories }}</div>
     <div class="flex-container complexity-info">
       <app-complexity-rating

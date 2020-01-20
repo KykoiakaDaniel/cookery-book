@@ -32,6 +32,8 @@ import { FilterCategoriesComponent } from "./filter-categories/filter-categories
 import { FiltersComponent } from "./filters/filters.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { AuthorizationComponent } from "./authorization/authorization.component";
+import { RecipeDescriptionComponent } from './recipe-description/recipe-description.component';
+import { CookingStepComponent } from './cooking-step/cooking-step.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { AuthorizationComponent } from "./authorization/authorization.component"
     FilterCategoriesComponent,
     FiltersComponent,
     RegistrationComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    RecipeDescriptionComponent,
+    CookingStepComponent
   ],
   imports: [
     BrowserModule,

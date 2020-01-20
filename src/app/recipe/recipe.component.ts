@@ -11,10 +11,12 @@ export class RecipeComponent implements OnInit {
 
   listCategories: string;
   openRecipe: boolean = false;
+  link: string[];
 
   constructor() {}
 
   ngOnInit() {
+    this.link = ["recipe", "" + this.recipe.id];
     this.listCategories = this.recipe.categories.join(" , ");
   }
 }
