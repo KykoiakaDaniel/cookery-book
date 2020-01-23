@@ -1,0 +1,36 @@
+<div class="flex-container">
+  <div class="ingredient-filters">
+    <div class="padding-form">
+      <app-filters></app-filters>
+    </div>
+  </div>
+  <div class="recipes">
+    <div class="block-type">Новые</div>
+    <app-recipe
+      *ngFor="let recipe of listNewRecipes"
+      [recipe]="recipe"
+    ></app-recipe>
+    <div class="block-type">Топ 10</div>
+    <app-recipe
+      *ngFor="let recipe of listTopRecipes"
+      [recipe]="recipe"
+    ></app-recipe>
+    <div class="block-type">Топ авторов</div>
+    <div class="authors">
+      <div>
+        <ng-container *ngFor="let author of listTopAuthors; let i = index">
+          <div *ngIf="i < listTopAuthors.length / 2" class="author-top">
+            <a>{{ i + 1 }}. {{ author.author }}</a>
+          </div>
+        </ng-container>
+      </div>
+      <div>
+        <ng-container *ngFor="let author of listTopAuthors; let i = index">
+          <div *ngIf="i >= listTopAuthors.length / 2" class="author-top">
+            <a>{{ i + 1 }}. {{ author.author }}</a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

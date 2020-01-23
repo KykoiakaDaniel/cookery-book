@@ -16,7 +16,7 @@
         ></app-complexity-rating>
         <span> | {{ recipe.price }} | {{ recipe.cookingTime }}</span>
       </div>
-      <div>{{ recipe.author }} | {{ recipe.date }}</div>
+      <div>{{ recipe.author }} | {{ recipe.date.split(" ")[0] }}</div>
 
       <div class="text-center">ИНГРЕДИЕНТЫ</div>
       <div class="grid-container">

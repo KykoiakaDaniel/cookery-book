@@ -59,7 +59,7 @@
       </div>
     </div>
     <div *ngIf="openRecipe" class="author-info">
-      {{ recipe.author }} | {{ recipe.date }}
+      {{ recipe.author }} | {{ recipe.date.split(" ")[0] }}
     </div>
     <div class="buttons-control">
       <button mat-icon-button>
