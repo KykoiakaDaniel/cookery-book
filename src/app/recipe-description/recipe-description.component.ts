@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Recipe } from "../classes/recipe";
 import { RecipeDataService } from "../services/recipe-data.service";
+import { FilterDataService } from "../services/filter-data.service";
+import { Filter } from "../classes/filter";
 
 @Component({
   selector: "app-recipe-description",
@@ -16,6 +18,7 @@ export class RecipeDescriptionComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private recipeDataService: RecipeDataService,
+    private filterDataService: FilterDataService,
     private router: Router
   ) {
     this.id = parseInt(this.activateRoute.snapshot.params["id"]);
@@ -27,5 +30,13 @@ export class RecipeDescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.listCategories = this.recipe.categories.join(" , ");
+  }
+
+  goToSimilarRecipes(): void {
+    let ingredients: string[] = [];
+    this.recipe.ingredients.forEach(item => ingredients.push(item.ingredient));
+    this.filterDataService.setFilter(
+      new Filter([], "", 5, "", ingredients, "И", false)
+    );
   }
 }

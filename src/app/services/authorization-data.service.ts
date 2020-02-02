@@ -1,15 +1,80 @@
+import { Account } from "./../classes/account";
 import { Injectable } from "@angular/core";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthorizationDataService {
-  private isLogged: boolean = false;
+  private authorizedUser: Account = null;
   private socialMedia: object[] = [];
-  constructor() {}
+  private listAccounts: Account[] = [];
+  constructor() {
+    this.getAccounts();
+  }
 
-  getAuthorizationStatus(): boolean {
-    return this.isLogged;
+  getAccounts(): void {
+    this.listAccounts = [
+      {
+        name: "Иван",
+        surname: "Петров",
+        patronymic: "Олегович",
+        email: "artur@yandex.ru",
+        password: "12345"
+      },
+      {
+        name: "Сергей",
+        surname: "Кириллов",
+        patronymic: "Олегович",
+        email: "sergei@yandex.ru",
+        password: "rrr34rr5"
+      },
+      {
+        name: "Марина",
+        surname: "Зимина",
+        patronymic: "Олегович",
+        email: "marina@yandex.ru",
+        password: "12345"
+      },
+      {
+        name: "Зина",
+        surname: "Иванова",
+        patronymic: "Олегович",
+        email: "zina@yandex.ru",
+        password: "12345"
+      },
+      {
+        name: "Стас",
+        surname: "Куропаткин",
+        patronymic: "Олегович",
+        email: "stas@yandex.ru",
+        password: "12345"
+      },
+      {
+        name: "Кирилл",
+        surname: "Забродин",
+        patronymic: "Олегович",
+        email: "kirill@yandex.ru",
+        password: "12345"
+      },
+      {
+        name: "Сергей",
+        surname: "Архипов",
+        patronymic: "Олегович",
+        email: "serser@yandex.ru",
+        password: "12345"
+      },
+      {
+        name: "Антон",
+        surname: "Кривоухов",
+        patronymic: "Олегович",
+        email: "antonnn@yandex.ru",
+        password: "12345"
+      }
+    ];
+  }
+
+  getAuthorizationStatus(): Account {
+    return this.authorizedUser;
   }
 
   getSocialMedia(): object[] {
@@ -38,7 +103,32 @@ export class AuthorizationDataService {
     return this.socialMedia;
   }
 
-  changeAuthorizationStatus(): void {
-    this.isLogged = !this.isLogged;
+  logout(): void {
+    this.authorizedUser = null;
+  }
+
+  registration(account: Account): boolean {
+    let existence = this.listAccounts.find(
+      item => item.email === account.email
+    );
+    if (existence) {
+      return false;
+    } else {
+      this.listAccounts.push(account);
+      this.authorizedUser = account;
+      return true;
+    }
+  }
+
+  login(email: string, password: string): boolean {
+    let existence = this.listAccounts.find(
+      item => item.email === email && item.password === password
+    );
+    if (existence) {
+      this.authorizedUser = existence;
+      return true;
+    } else {
+      return false;
+    }
   }
 }

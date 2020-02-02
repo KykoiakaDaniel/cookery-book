@@ -6,7 +6,42 @@
         {{ blockTree ? "expand_less" : "expand_more" }}
       </mat-icon>
     </button>
-    <app-filter-categories [hidden]="!blockTree"></app-filter-categories>
+    <div [hidden]="!blockTree">
+      <div class="tree-node">
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            <mat-checkbox
+              class="checklist-leaf-node"
+              [checked]="checklistSelection.isSelected(node)"
+              (change)="todoLeafItemSelectionToggle(node)"
+              >{{ node.item }}
+            </mat-checkbox>
+          </mat-tree-node>
+          <mat-tree-node
+            *matTreeNodeDef="let node; when: hasChildren"
+            matTreeNodePadding
+          >
+            <mat-checkbox
+              [checked]="descendantsAllSelected(node)"
+              [indeterminate]="descendantsPartiallySelected(node)"
+              (change)="todoItemSelectionToggle(node)"
+              >{{ node.item }}
+            </mat-checkbox>
+            <button
+              mat-icon-button
+              matTreeNodeToggle
+              [attr.aria-label]="'toggle ' + node.filename"
+            >
+              <mat-icon>
+                {{
+                  treeControl.isExpanded(node) ? "expand_less" : "expand_more"
+                }}
+              </mat-icon>
+            </button>
+          </mat-tree-node>
+        </mat-tree>
+      </div>
+    </div>
   </div>
   <form [formGroup]="recipesForm" class="example-form">
     <div>

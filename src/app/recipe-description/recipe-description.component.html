@@ -2,10 +2,12 @@
   <div class="flex-container flex-container-main">
     <div class="recipe-info-image">
       <img [src]="recipe.image" class="recipe-image" />
-      <a routerLink="" class="recipe-link-image"
+      <a
+        routerLink="/book"
+        (click)="goToSimilarRecipes()"
+        class="recipe-link-image"
         >Найти с такими же ингредиентами</a
       >
-      <!-- <div class="link-full-width"></div> -->
     </div>
     <div class="recipe-description">
       <div class="title-recipe">{{ recipe.title }}</div>

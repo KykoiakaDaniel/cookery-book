@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { AuthorizationDataService } from "../services/authorization-data.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Account } from "../classes/account";
 
 @Component({
   selector: "app-registration",
@@ -42,8 +43,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerAccount(): void {
-    if (this.registrationForm.controls["email"].value !== "artur@yandex.ru") {
-      this.authorizationDataService.changeAuthorizationStatus();
+    let status: boolean = this.authorizationDataService.registration(
+      new Account(
+        this.registrationForm.controls["name"].value,
+        this.registrationForm.controls["surname"].value,
+        this.registrationForm.controls["patronymic"].value,
+        this.registrationForm.controls["email"].value,
+        this.registrationForm.controls["password"].value
+      )
+    );
+    if (status) {
       this.dialogRef.close();
     } else {
       this.error = true;

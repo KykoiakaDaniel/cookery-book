@@ -16,10 +16,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  logOut(): void {
-    this.authorizationDataService.changeAuthorizationStatus();
-  }
-
   openAuthorizationDialog() {
     const dialogRef = this.dialog.open(AuthorizationComponent, {
       width: "450px"

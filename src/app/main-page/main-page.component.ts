@@ -6,6 +6,8 @@ import { RecipeDataService } from "../services/recipe-data.service";
 import * as moment from "moment";
 import "moment/locale/ru";
 import { Author } from "../classes/author";
+import { FilterDataService } from "../services/filter-data.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-main-page",
@@ -13,15 +15,17 @@ import { Author } from "../classes/author";
   styleUrls: ["./main-page.component.scss"]
 })
 export class MainPageComponent implements OnInit {
-  @ViewChild(FiltersComponent, { static: false })
-  private filtersComponent: FiltersComponent;
   filters: Filter = null;
   listRecipes: Recipe[];
   listTopRecipes: Recipe[];
   listNewRecipes: Recipe[];
   listTopAuthors: Author[];
 
-  constructor(private recipeDataService: RecipeDataService) {}
+  constructor(
+    private recipeDataService: RecipeDataService,
+    private filterDataService: FilterDataService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.listRecipes = this.recipeDataService.getDataRecipes();
@@ -44,7 +48,7 @@ export class MainPageComponent implements OnInit {
 
   ngAfterViewChecked() {
     setTimeout(() => {
-      this.filters = this.filtersComponent.recipeFilters;
+      this.filters = this.filterDataService.getFilter();
     }, 0);
   }
 
@@ -78,5 +82,12 @@ export class MainPageComponent implements OnInit {
 
   sortByTopAuthors(a: Author, b: Author): number {
     return b.countCooked - a.countCooked;
+  }
+
+  goToAuthorRecipes(author: string): void {
+    this.filterDataService.setFilter(
+      new Filter([], "", 5, author, [], "И", false)
+    );
+    this.router.navigate(["/book"]);
   }
 }

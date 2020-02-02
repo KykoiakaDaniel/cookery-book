@@ -5,8 +5,8 @@ import { RecipeDescriptionComponent } from "./recipe-description/recipe-descript
 import { MainPageComponent } from "./main-page/main-page.component";
 
 const routes: Routes = [
-  { path: "", component: BookComponent },
-  { path: "main", component: MainPageComponent },
+  { path: "book", component: BookComponent },
+  { path: "", component: MainPageComponent },
   { path: "recipe/:id", component: RecipeDescriptionComponent },
   { path: "**", redirectTo: "/" }
 ];

@@ -28,13 +28,13 @@ import { BookComponent } from "./book/book.component";
 import { HeaderComponent } from "./header/header.component";
 import { RecipeComponent } from "./recipe/recipe.component";
 import { ComplexityRatingComponent } from "./complexity-rating/complexity-rating.component";
-import { FilterCategoriesComponent } from "./filter-categories/filter-categories.component";
 import { FiltersComponent } from "./filters/filters.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { AuthorizationComponent } from "./authorization/authorization.component";
 import { RecipeDescriptionComponent } from "./recipe-description/recipe-description.component";
 import { CookingStepComponent } from "./cooking-step/cooking-step.component";
 import { MainPageComponent } from "./main-page/main-page.component";
+import { CreateRecipeDialogComponent } from "./create-recipe-dialog/create-recipe-dialog.component";
 
 @NgModule({
   declarations: [
@@ -43,13 +43,13 @@ import { MainPageComponent } from "./main-page/main-page.component";
     HeaderComponent,
     RecipeComponent,
     ComplexityRatingComponent,
-    FilterCategoriesComponent,
     FiltersComponent,
     RegistrationComponent,
     AuthorizationComponent,
     RecipeDescriptionComponent,
     CookingStepComponent,
-    MainPageComponent
+    MainPageComponent,
+    CreateRecipeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +73,11 @@ import { MainPageComponent } from "./main-page/main-page.component";
     MatButtonToggleModule,
     MatDialogModule
   ],
-  entryComponents: [AuthorizationComponent, RegistrationComponent],
+  entryComponents: [
+    AuthorizationComponent,
+    RegistrationComponent,
+    CreateRecipeDialogComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -20,14 +20,26 @@
       <div>
         <ng-container *ngFor="let author of listTopAuthors; let i = index">
           <div *ngIf="i < listTopAuthors.length / 2" class="author-top">
-            <a>{{ i + 1 }}. {{ author.author }}</a>
+            <button
+              class="font-author"
+              (click)="goToAuthorRecipes(author.author)"
+              mat-button
+            >
+              {{ i + 1 }}. {{ author.author }}
+            </button>
           </div>
         </ng-container>
       </div>
       <div>
         <ng-container *ngFor="let author of listTopAuthors; let i = index">
           <div *ngIf="i >= listTopAuthors.length / 2" class="author-top">
-            <a>{{ i + 1 }}. {{ author.author }}</a>
+            <button
+              class="font-author"
+              (click)="goToAuthorRecipes(author.author)"
+              mat-button
+            >
+              {{ i + 1 }}. {{ author.author }}
+            </button>
           </div>
         </ng-container>
       </div>

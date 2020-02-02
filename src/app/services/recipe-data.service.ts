@@ -26,6 +26,14 @@ export class RecipeDataService {
       "говядина",
       "лук",
       "перец",
+      "курица",
+      "мясо",
+      "лимон",
+      "петрушка",
+      "дыня",
+      "банан",
+      "имбирь",
+      "сёмга",
       "яблоко"
     ];
     return this.listIngredients;
@@ -98,9 +106,6 @@ export class RecipeDataService {
             alternatives: [
               { ingredient: "курица", count: "2 кг" },
               { ingredient: "мясо", count: "300 гр" },
-              { ingredient: "лимон", count: "2 шт" },
-              { ingredient: "курица", count: "2 кг" },
-              { ingredient: "мясо", count: "3 кг" },
               { ingredient: "лимон", count: "2 шт" }
             ]
           },
@@ -153,6 +158,7 @@ export class RecipeDataService {
           }
         ],
         author: "Иван Петров",
+        email: "artur@yandex.ru",
         date: "12.01.2020 17:04:22",
         countCooked: 93
       },
@@ -197,6 +203,7 @@ export class RecipeDataService {
           }
         ],
         author: "Антон Кривоухов",
+        email: "antonnn@yandex.ru",
         date: "14.03.2019 03:08:13",
         countCooked: 24
       },
@@ -246,6 +253,7 @@ export class RecipeDataService {
           }
         ],
         author: "Кирилл Забродин",
+        email: "kirill@yandex.ru",
         date: "02.12.2014 23:00:14",
         countCooked: 42
       },
@@ -282,6 +290,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Архипов",
+        email: "serser@yandex.ru",
         date: "04.12.2014 23:00:17",
         countCooked: 42
       },
@@ -323,6 +332,7 @@ export class RecipeDataService {
           }
         ],
         author: "Зина Иванова",
+        email: "zina@yandex.ru",
         date: "02.12.2014 23:00:14",
         countCooked: 12
       },
@@ -359,6 +369,7 @@ export class RecipeDataService {
           }
         ],
         author: "Марина Зимина",
+        email: "marina@yandex.ru",
         date: "02.12.2014 23:00:14",
         countCooked: 56
       },
@@ -400,6 +411,7 @@ export class RecipeDataService {
           }
         ],
         author: "Стас Куропаткин",
+        email: "stas@yandex.ru",
         date: "02.12.2014 23:00:14",
         countCooked: 43
       },
@@ -436,6 +448,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Кириллов",
+        email: "sergei@yandex.ru",
         date: "02.12.2018 23:00:14",
         countCooked: 16
       },
@@ -477,6 +490,7 @@ export class RecipeDataService {
           }
         ],
         author: "Иван Петров",
+        email: "artur@yandex.ru",
         date: "02.12.2018 23:00:15",
         countCooked: 96
       },
@@ -513,6 +527,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Кириллов",
+        email: "sergei@yandex.ru",
         date: "17.02.2017 12:04:18",
         countCooked: 83
       },
@@ -554,6 +569,7 @@ export class RecipeDataService {
           }
         ],
         author: "Иван Петров",
+        email: "artur@yandex.ru",
         date: "17.02.2017 12:04:18",
         countCooked: 75
       },
@@ -590,6 +606,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Кириллов",
+        email: "sergei@yandex.ru",
         date: "17.02.2017 12:04:18",
         countCooked: 35
       },
@@ -631,6 +648,7 @@ export class RecipeDataService {
           }
         ],
         author: "Иван Петров",
+        email: "artur@yandex.ru",
         date: "17.02.2017 12:04:18",
         countCooked: 97
       },
@@ -667,6 +685,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Кириллов",
+        email: "sergei@yandex.ru",
         date: "17.02.2017 12:04:18",
         countCooked: 29
       },
@@ -708,6 +727,7 @@ export class RecipeDataService {
           }
         ],
         author: "Иван Петров",
+        email: "artur@yandex.ru",
         date: "12.07.2019 14:04:23",
         countCooked: 43
       },
@@ -744,6 +764,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Кириллов",
+        email: "sergei@yandex.ru",
         date: "12.07.2019 14:04:23",
         countCooked: 51
       },
@@ -785,6 +806,7 @@ export class RecipeDataService {
           }
         ],
         author: "Иван Петров",
+        email: "artur@yandex.ru",
         date: "12.07.2019 14:04:23",
         countCooked: 68
       },
@@ -821,6 +843,7 @@ export class RecipeDataService {
           }
         ],
         author: "Сергей Кириллов",
+        email: "sergei@yandex.ru",
         date: "12.01.2020 17:04:23",
         countCooked: 72
       }

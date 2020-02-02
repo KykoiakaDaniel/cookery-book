@@ -3,6 +3,11 @@ import { RecipeDataService } from "../services/recipe-data.service";
 import { Recipe } from "../classes/recipe";
 import { FiltersComponent } from "../filters/filters.component";
 import { Filter } from "../classes/filter";
+import { FilterDataService } from "../services/filter-data.service";
+import { MatDialog } from "@angular/material";
+import { AuthorizationDataService } from "../services/authorization-data.service";
+import { CreateRecipeDialogComponent } from "../create-recipe-dialog/create-recipe-dialog.component";
+import { AuthorizationComponent } from "../authorization/authorization.component";
 
 @Component({
   selector: "app-book",
@@ -10,13 +15,16 @@ import { Filter } from "../classes/filter";
   styleUrls: ["./book.component.scss"]
 })
 export class BookComponent implements OnInit, AfterViewChecked {
-  @ViewChild(FiltersComponent, { static: false })
-  private filtersComponent: FiltersComponent;
   filters: Filter = null;
   listRecipes: Recipe[];
   listFilteredRecipes: Recipe[];
 
-  constructor(private recipeDataService: RecipeDataService) {}
+  constructor(
+    private recipeDataService: RecipeDataService,
+    private filterDataService: FilterDataService,
+    private dialog: MatDialog,
+    private authorizationDataService: AuthorizationDataService
+  ) {}
 
   ngOnInit() {
     this.listRecipes = this.recipeDataService.getDataRecipes();
@@ -24,7 +32,7 @@ export class BookComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     setTimeout(() => {
-      this.filters = this.filtersComponent.recipeFilters;
+      this.filters = this.filterDataService.getFilter();
       this.listFilteredRecipes = this.listRecipes.filter(recipe =>
         this.checkRecipe(recipe)
       );
@@ -81,7 +89,13 @@ export class BookComponent implements OnInit, AfterViewChecked {
             item => item.ingredient === this.filters.ingredients[i]
           )
         ) {
-          return false;
+          if (this.filters.alternatives) {
+            if (!this.checkAlternatives(recipe, this.filters.ingredients[i])) {
+              return false;
+            }
+          } else {
+            return false;
+          }
         }
       } else {
         if (
@@ -90,6 +104,12 @@ export class BookComponent implements OnInit, AfterViewChecked {
           )
         ) {
           return true;
+        } else {
+          if (this.filters.alternatives) {
+            if (this.checkAlternatives(recipe, this.filters.ingredients[i])) {
+              return true;
+            }
+          }
         }
       }
     }
@@ -97,6 +117,32 @@ export class BookComponent implements OnInit, AfterViewChecked {
       return true;
     } else {
       return allEmpty;
+    }
+  }
+
+  checkAlternatives(recipe: Recipe, filterIngredient: string): boolean {
+    let existence: boolean = false;
+    recipe.ingredients.forEach(item => {
+      if (
+        item.alternatives.find(
+          alternativeItem => alternativeItem.ingredient === filterIngredient
+        )
+      ) {
+        existence = true;
+      }
+    });
+    return existence;
+  }
+
+  addNewRecipe(): void {
+    if (this.authorizationDataService.getAuthorizationStatus()) {
+      const dialogRef = this.dialog.open(CreateRecipeDialogComponent, {
+        width: "450px"
+      });
+    } else {
+      const dialogRef = this.dialog.open(AuthorizationComponent, {
+        width: "450px"
+      });
     }
   }
 }

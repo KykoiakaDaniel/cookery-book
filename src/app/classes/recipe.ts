@@ -17,6 +17,7 @@ export class Recipe {
       description: string;
     }[],
     public author: string,
+    public email: string,
     public date: string,
     public countCooked: number
   ) {}

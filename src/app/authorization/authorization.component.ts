@@ -35,11 +35,11 @@ export class AuthorizationComponent implements OnInit {
   }
 
   loginToAccount(): void {
-    if (
-      this.authorizationForm.controls["email"].value === "artur@yandex.ru" &&
-      this.authorizationForm.controls["password"].value === "12345"
-    ) {
-      this.authorizationDataService.changeAuthorizationStatus();
+    let status: boolean = this.authorizationDataService.login(
+      this.authorizationForm.controls["email"].value,
+      this.authorizationForm.controls["password"].value
+    );
+    if (status) {
       this.dialogRef.close();
     } else {
       this.error = true;

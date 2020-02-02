@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <a routerLink="/main" class="link-main">Моя кулинарная книга</a>
+  <a routerLink="" class="link-main">Моя кулинарная книга</a>
 
   <span class="fill-remaining-space"></span>
 
@@ -8,7 +8,7 @@
       <mat-icon>dialpad</mat-icon>
       <span>Иванов И.</span>
     </button>
-    <button mat-button (click)="logOut()">
+    <button mat-button (click)="this.authorizationDataService.logout()">
       Выход
     </button>
   </mat-menu>
